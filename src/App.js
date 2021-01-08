@@ -1,28 +1,12 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand } from 'reactstrap';
-import Menu from './components/MenuComponent';
+import Main from './components/MainComponent';
 
-import { dishes } from './shared/dishes';
- 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      dishes: dishes
-    }
-  }
-
   render(){
     return (
-      <div className="app">
-        <Navbar dark color="primary">
-          <div className="container">
-            <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
-          </div>
-        </Navbar>
-        <Menu dishes={[...this.state.dishes]} />
-      </div>
+      <main className="app">
+        <Main />
+      </main>
     );
   }
 }

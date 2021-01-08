@@ -1,0 +1,41 @@
+import React, { Component } from 'react';
+import { Navbar, NavbarBrand } from 'reactstrap';
+import Menu from './MenuComponent';
+import DishDetail from './DishDetailComponent';
+
+import { dishes } from '../shared/dishes';
+
+ 
+class Main extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      dishes: dishes,
+      selectedDish: null
+    }
+  }
+
+  onDishSelect(dishId) {
+    this.setState({ selectedDish: dishId });
+  }
+
+  render(){
+    return (
+      <div className="app">
+        <Navbar dark color="primary">
+          <div className="container">
+            <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
+          </div>
+        </Navbar>
+        <Menu dishes={[...this.state.dishes]} onDishSelect={dishId => this.onDishSelect(dishId)} />
+        {this.state.selectedDish !== null ? 
+          <DishDetail dish={this.state.dishes.filter(dish => dish.id === this.state.selectedDish)[0]} />
+        : <div></div>
+        }
+      </div>
+    );
+  }
+}
+
+export default Main;
