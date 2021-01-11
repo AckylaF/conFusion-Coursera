@@ -1,7 +1,9 @@
 import React from "react";
-import { Card, CardImg, CardBody,CardTitle, CardText } from 'reactstrap';
+import { Card, CardImg, CardBody,CardTitle, CardText, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
-export default function DishDetail({ dish }) {
+
+export default function DishDetail({ dish, comments }) {
 
   const renderDish = (dish) => {
     return (
@@ -43,12 +45,22 @@ export default function DishDetail({ dish }) {
   return (
     <article className="container">
       <section className="row">
+        <Breadcrumb>
+          <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+          <BreadcrumbItem active>{dish.name}</BreadcrumbItem>
+        </Breadcrumb>
+        <div className="col-12">
+          <h3>{dish.name}</h3>
+          
+        </div>
+      </section>
+      <section className="row">
         <div className="col-12 col-md-5 m-1">
           {renderDish(dish)}
         </div>
 
         <div className="col-12 col-md-5 m-1">
-          {renderComments(dish.comments)}
+          {renderComments(comments)}
         </div>
       </section>
     </article>
