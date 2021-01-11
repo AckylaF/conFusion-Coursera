@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { Card, CardImg, CardBody,CardTitle, CardText } from 'reactstrap';
 
-class DishDetail extends Component {
+export default function DishDetail({ dish }) {
 
-  renderDish(dish) {
+  const renderDish = (dish) => {
     return (
       <Card>
         <CardImg width="100%" object src={dish.image} alt={dish.name} />
@@ -13,9 +13,9 @@ class DishDetail extends Component {
         </CardBody>
       </Card>
     )
-  }
+  };
 
-  renderComments(comments) {
+  const renderComments = (comments) => {
     const dateFormat = {
       year: 'numeric',
       month: 'short',
@@ -38,25 +38,19 @@ class DishDetail extends Component {
         </ul>
       </div>
     )
-  }
+  };
 
-  render() {
-    const dish = this.props.dish;
-    
-    return (
-      <article className="container">
-        <section className="row">
-          <div className="col-12 col-md-5 m-1">
-            {this.renderDish(dish)}
-          </div>
+  return (
+    <article className="container">
+      <section className="row">
+        <div className="col-12 col-md-5 m-1">
+          {renderDish(dish)}
+        </div>
 
-          <div className="col-12 col-md-5 m-1">
-            {this.renderComments(dish.comments)}
-          </div>
-        </section>
-      </article>
-    )
-  }
+        <div className="col-12 col-md-5 m-1">
+          {renderComments(dish.comments)}
+        </div>
+      </section>
+    </article>
+  )
 }
-
-export default DishDetail;
